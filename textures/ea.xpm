@@ -1,0 +1,9 @@
+/* XPM */
+static char *ea_xpm[] = {
+"4 4 2 1",
+"A c #AAAA22",
+"B c #000000",
+"AAAA",
+"ABBA",
+"ABBA",
+"AAAA"};

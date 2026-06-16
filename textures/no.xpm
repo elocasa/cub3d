@@ -1,0 +1,9 @@
+/* XPM */
+static char *no_xpm[] = {
+"4 4 2 1",
+"A c #AA2222",
+"B c #FFFFFF",
+"ABAB",
+"BABA",
+"ABAB",
+"BABA"};

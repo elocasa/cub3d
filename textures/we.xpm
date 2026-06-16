@@ -1,0 +1,9 @@
+/* XPM */
+static char *we_xpm[] = {
+"4 4 2 1",
+"A c #2222AA",
+"B c #FFFFFF",
+"ABBA",
+"BAAB",
+"ABBA",
+"BAAB"};
