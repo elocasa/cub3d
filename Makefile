@@ -13,18 +13,18 @@ INC := -Iinclude -I$(MLX_DIR)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-$(MAKE) -C $(MLX_DIR)
-$(CC) $(CFLAGS) $(OBJ) $(INC) $(MLX_FLAGS) -o $(NAME)
+	$(MAKE) -C $(MLX_DIR)
+	$(CC) $(CFLAGS) $(OBJ) $(INC) $(MLX_FLAGS) -o $(NAME)
 
 %.o: %.c
-$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 clean:
-$(MAKE) -C $(MLX_DIR) clean
-rm -f $(OBJ) $(DEP)
+	$(MAKE) -C $(MLX_DIR) clean
+	rm -f $(OBJ) $(DEP)
 
 fclean: clean
-rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

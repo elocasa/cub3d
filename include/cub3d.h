@@ -8,7 +8,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "../minilibx-linux/mlx.h"
+# include <mlx.h>
 
 # define WIN_W 1280
 # define WIN_H 720
@@ -90,9 +90,10 @@ voidvalidate_map(t_game *game);
 
 voidinit_game(t_game *game);
 voidload_textures(t_game *game);
-intrender_loop(t_game *game);
-inton_key_press(int keycode, t_game *game);
-inton_key_release(int keycode, t_game *game);
-inton_close(t_game *game);
+void	render_frame(t_game *game);
+int		render_loop(t_game *game);
+int		on_key_press(int keycode, t_game *game);
+int		on_key_release(int keycode, t_game *game);
+int		on_close(t_game *game);
 
 #endif
