@@ -22,7 +22,7 @@
 ### 3) Motor raycasting
 - [ ] Inicializar posición del jugador en el centro de la celda de inicio
 - [ ] Configurar dirección inicial y plano de cámara según orientación
-- [ ] Lanzar un rayo por cada columna de pantalla
+- [ ] Lanzar un rayo por cada columna de pantalla 000000000
 - [ ] Implementar DDA para recorrer celdas del mapa
 - [ ] Calcular distancia perpendicular para evitar efecto ojo de pez
 - [ ] Determinar el lado impactado para elegir textura correcta
