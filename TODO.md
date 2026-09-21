@@ -20,33 +20,33 @@
 - [ ] Rellenar el mapa a ancho uniforme para evitar accesos fuera de rango
 
 ### 3) Motor raycasting
-- [ ] Inicializar posición del jugador en el centro de la celda de inicio
-- [ ] Configurar dirección inicial y plano de cámara según orientación
-- [ ] Lanzar un rayo por cada columna de pantalla 000000
-- [ ] Implementar DDA para recorrer celdas del mapa
-- [ ] Calcular distancia perpendicular para evitar efecto ojo de pez
-- [ ] Determinar el lado impactado para elegir textura correcta
-- [ ] Calcular coordenada horizontal de la textura (`tex_x`)
-- [ ] Escalar la textura verticalmente según la altura de pared
-- [ ] Dibujar pared usando el buffer de imagen
-- [ ] Aplicar sombreado básico según distancia o lado del impacto
+- [x] Inicializar posición del jugador en el centro de la celda de inicio
+- [x] Configurar dirección inicial y plano de cámara según orientación
+- [x] Lanzar un rayo por cada columna de pantalla 000000
+- [x] Implementar DDA para recorrer celdas del mapa
+- [x] Calcular distancia perpendicular para evitar efecto ojo de pez
+- [x] Determinar el lado impactado para elegir textura correcta
+- [x] Calcular coordenada horizontal de la textura (`tex_x`)
+- [x] Escalar la textura verticalmente según la altura de pared
+- [x] Dibujar pared usando el buffer de imagen
+- [x] Aplicar sombreado básico según distancia o lado del impacto
 
 ### 4) Movimiento y controles
-- [ ] Mapear teclas `W`, `A`, `S`, `D` para desplazamiento
-- [ ] Mapear flechas izquierda/derecha para rotación
-- [ ] Aplicar movimiento adelante y atrás respecto a la dirección del jugador
-- [ ] Aplicar strafe lateral usando el plano de cámara
-- [ ] Separar movimiento en eje X y eje Y para mejorar colisiones
-- [ ] Bloquear avance cuando la siguiente celda sea pared
-- [ ] Evitar atravesar esquinas cerradas o paredes diagonales
-- [ ] Cerrar la ventana con `ESC` y con el evento de la ventana
+- [x] Mapear teclas `W`, `A`, `S`, `D` para desplazamiento
+- [x] Mapear flechas izquierda/derecha para rotación
+- [x] Aplicar movimiento adelante y atrás respecto a la dirección del jugador
+- [x] Aplicar strafe lateral usando el plano de cámara
+- [x] Separar movimiento en eje X y eje Y para mejorar colisiones
+- [x] Bloquear avance cuando la siguiente celda sea pared
+- [x] Evitar atravesar esquinas cerradas o paredes diagonales
+- [x] Cerrar la ventana con `ESC` y con el evento de la ventana
 
 ### 5) Render y UX
-- [ ] Pintar techo con color uniforme antes de dibujar paredes
-- [ ] Pintar suelo con color uniforme en la mitad inferior
-- [ ] Mantener refresco continuo con `mlx_loop_hook`
-- [ ] Inicializar y liberar correctamente la imagen de frame
-- [ ] Cerrar ventana sin fugas de memoria ni recursos gráficos
+- [x] Pintar techo con color uniforme antes de dibujar paredes
+- [x] Pintar suelo con color uniforme en la mitad inferior
+- [x] Mantener refresco continuo con `mlx_loop_hook`
+- [x] Inicializar y liberar correctamente la imagen de frame
+- [x] Cerrar ventana sin fugas de memoria ni recursos gráficos
 - [ ] Definir si el minimapa entra en el alcance o queda fuera
 - [ ] Añadir ayudas visuales opcionales para depuración si hace falta
 
