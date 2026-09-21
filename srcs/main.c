@@ -1,26 +1,31 @@
 #include "../includes/cub3d.h"
 
 /*
- * Punto de entrada: reserva el juego, carga la escena, arranca mlx
- * y engancha los hooks de eventos antes de entrar en el bucle.
+ * Punto de entrada: valida los argumentos, reserva el juego, parsea
+ * el .cub, arranca mlx y engancha los hooks antes de entrar al bucle.
  * Retorna: 0 si el programa termina con éxito.
  *
- * Entry point: allocates the game, loads the scene, starts mlx and
- * wires the event hooks before entering the loop.
+ * Entry point: validates the arguments, allocates the game, parses
+ * the .cub, starts mlx and wires the hooks before entering the loop.
  * Returns: 0 if the program finishes successfully.
  */
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	*g;
 
+	if (argc != 2)
+	{
+		ft_putstr_fd("Error\nUsage: ./cub3D <map.cub>\n", 2);
+		return (1);
+	}
 	g = init_game();
 	if (!g)
 	{
 		ft_putstr_fd("Error\nCould not allocate memory\n", 2);
 		return (1);
 	}
-	if (stub_load_scene(g) < 0)
-		error_exit(g, "Could not load the test scene");
+	if (parse_scene(g, argv[1]) < 0)
+		error_exit(g, "Could not load the map");
 	if (init_mlx(g) < 0)
 		error_exit(g, "Could not initialize MiniLibX");
 	if (load_all_textures(g) < 0)

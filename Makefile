@@ -11,7 +11,6 @@ MLX		= $(MLX_DIR)/libmlx.a
 MLX_CFLAGS	= -Wno-error
 
 SRCS		= srcs/main.c \
-		  srcs/stub.c \
 		  srcs/init.c \
 		  srcs/textures.c \
 		  srcs/raycast.c \

@@ -43,9 +43,8 @@ typedef struct s_game
 	t_keys		keys;
 }	t_game;
 
-/* stub scene: sustituye al parser. Rellena mapa cerrado, jugador,
-   rutas de textura y colores. Los paths deben existir como .xpm. */
-int		stub_load_scene(t_game *g);
+/* parsing/ (Marcos): construye la escena a partir del fichero .cub. */
+# include "parsing.h"
 
 /* init.c */
 t_game	*init_game(void);
