@@ -1,18 +1,22 @@
 #include "../../includes/parser_internal.h"
 
 /*
- * Comprueba si una línea está vacía (solo espacios, tabs o nada).
- * Retorna: 1 si la línea está en blanco, 0 si no.
+ * Comprueba si una línea es estrictamente vacía (ningún carácter
+ * salvo un posible retorno de carro antes del salto de línea). Una
+ * línea de solo espacios NO cuenta: es una fila válida del mapa.
+ * Retorna: 1 si la línea está vacía, 0 si no.
  *
- * Checks whether a line is empty (only spaces, tabs, or nothing).
- * Returns: 1 if the line is blank, 0 otherwise.
+ * Checks whether a line is strictly empty (no character at all,
+ * except a possible carriage return, before the newline). A line
+ * made only of spaces does NOT count: it is a valid map row.
+ * Returns: 1 if the line is empty, 0 otherwise.
  */
 static int	is_blank_entry(const char *line)
 {
 	int	i;
 
 	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
+	while (line[i] == '\r')
 		i++;
 	return (line[i] == '\n' || line[i] == '\0');
 }
