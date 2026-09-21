@@ -26,7 +26,9 @@ SRCS		= srcs/main.c \
 		  srcs/raycast.c \
 		  srcs/render.c \
 		  srcs/input.c \
-		  srcs/cleanup.c
+		  srcs/cleanup.c \
+		  srcs/parsing/parsing.c \
+		  srcs/parsing/parse_open.c
 
 OBJS		= $(SRCS:.c=.o)
 
