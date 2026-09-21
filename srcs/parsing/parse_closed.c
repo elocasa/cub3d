@@ -33,10 +33,12 @@ static void	process_neighbor(t_game *g, t_parser *p, t_fill_ctx *ctx,
 
 	if (pos.row < 0 || pos.row >= p->map_count || pos.col < 0)
 		fail_not_closed(g, p, ctx);
+	if ((size_t)pos.col >= ft_strlen(p->map_lines[pos.row]))
+		fail_not_closed(g, p, ctx);
 	c = p->map_lines[pos.row][pos.col];
 	if (c == '1')
 		return ;
-	if (c == '\0' || c == '\n' || c == '\r' || c == ' ')
+	if (c == '\n' || c == '\r' || c == ' ')
 		fail_not_closed(g, p, ctx);
 	if (!ctx->visited[pos.row][pos.col])
 	{
