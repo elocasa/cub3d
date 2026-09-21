@@ -1,4 +1,4 @@
-#include "parser_internal.h"
+#include "../../includes/parser_internal.h"
 
 /*
  * Comprueba si una línea solo contiene espacios, tabs o está vacía.

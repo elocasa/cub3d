@@ -1,16 +1,17 @@
 #include "../../includes/parsing.h"
-#include "parser_internal.h"
+#include "../../includes/parser_internal.h"
 
 /*
- * Comprueba que las cuatro cabeceras de textura se hayan encontrado.
- * Retorna: 1 si NO, SO, WE y EA aparecieron, 0 si falta alguna.
+ * Comprueba que las seis cabeceras (texturas y colores) aparecieran.
+ * Retorna: 1 si NO, SO, WE, EA, F y C aparecieron, 0 si falta alguna.
  *
- * Checks that all four texture headers have been found.
- * Returns: 1 if NO, SO, WE and EA all appeared, 0 if any is missing.
+ * Checks that all six headers (textures and colors) appeared.
+ * Returns: 1 if NO, SO, WE, EA, F and C all appeared, 0 if any is missing.
  */
-static int	all_textures_found(t_parser *p)
+static int	all_headers_found(t_parser *p)
 {
-	return (p->found.no && p->found.so && p->found.we && p->found.ea);
+	return (p->found.no && p->found.so && p->found.we && p->found.ea
+		&& p->found.f && p->found.c);
 }
 
 /*
@@ -38,8 +39,8 @@ int	parse_scene(t_game *g, const char *path)
 		p->current_line = NULL;
 		line = get_next_line(p->fd);
 	}
-	if (!all_textures_found(p))
-		parser_error(g, p, "faltan cabeceras de textura (NO/SO/WE/EA)");
+	if (!all_headers_found(p))
+		parser_error(g, p, "faltan cabeceras (NO/SO/WE/EA/F/C)");
 	free_parser(p);
 	return (0);
 }

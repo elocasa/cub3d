@@ -1,4 +1,4 @@
-#include "parser_internal.h"
+#include "../../includes/parser_internal.h"
 
 /*
  * Crea la estructura temporal del parser y abre el fichero .cub.

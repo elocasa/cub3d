@@ -1,4 +1,4 @@
-#include "parser_internal.h"
+#include "../../includes/parser_internal.h"
 
 typedef struct s_slot
 {
@@ -71,7 +71,15 @@ int	handle_header_line(t_game *g, t_parser *p, char *line)
 			return (1);
 		}
 	}
-	if (starts_with(line, "F ") || starts_with(line, "C "))
+	if (starts_with(line, "F "))
+	{
+		handle_color_header(g, p, line, 'f');
 		return (1);
+	}
+	if (starts_with(line, "C "))
+	{
+		handle_color_header(g, p, line, 'c');
+		return (1);
+	}
 	return (0);
 }

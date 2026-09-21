@@ -1,7 +1,7 @@
 #ifndef PARSER_INTERNAL_H
 # define PARSER_INTERNAL_H
 
-# include "../../includes/cub3d.h"
+# include "cub3d.h"
 
 typedef struct s_headers_found
 {
@@ -36,5 +36,6 @@ void		free_parser(t_parser *p);
 void		parser_error(t_game *g, t_parser *p, const char *msg);
 int			handle_header_line(t_game *g, t_parser *p, char *line);
 void		store_map_line(t_game *g, t_parser *p, char *line);
+void		handle_color_header(t_game *g, t_parser *p, char *line, char kind);
 
 #endif
