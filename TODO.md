@@ -8,7 +8,7 @@
 - [ ] Añadir ejemplos de uso con mapas válidos e inválidos
 
 ### 2) Parsing del mapa/config
-- [ ] Abrir el fichero `.cub` y rechazar errores de acceso/lectura
+- [x] Abrir el fichero `.cub` y rechazar errores de acceso/lectura
 - [ ] Leer cabeceras `NO`, `SO`, `WE`, `EA` y guardar rutas de textura
 - [ ] Validar que no falte ninguna textura y que no haya duplicados
 - [ ] Parsear colores `F` y `C` en formato `R,G,B`
