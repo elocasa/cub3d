@@ -1,12 +1,5 @@
 #include "../../includes/parser_internal.h"
 
-typedef struct s_char_pos
-{
-	int		row;
-	int		col;
-	char	c;
-}	t_char_pos;
-
 /*
  * Comprueba si un carácter está permitido en el mapa: '0', '1',
  * espacio, o una posición inicial N/S/E/W.
@@ -68,11 +61,11 @@ static void	report_bad_char(t_game *g, t_parser *p, t_char_pos pos)
 
 	cs[0] = pos.c;
 	cs[1] = '\0';
-	ft_strlcpy(msg, "caracter de mapa invalido '", sizeof(msg));
+	ft_strlcpy(msg, "invalid map character '", sizeof(msg));
 	ft_strlcat(msg, cs, sizeof(msg));
-	ft_strlcat(msg, "' en linea ", sizeof(msg));
+	ft_strlcat(msg, "' at line ", sizeof(msg));
 	append_uint(msg, sizeof(msg), (unsigned int)(pos.row + 1));
-	ft_strlcat(msg, ", columna ", sizeof(msg));
+	ft_strlcat(msg, ", column ", sizeof(msg));
 	append_uint(msg, sizeof(msg), (unsigned int)(pos.col + 1));
 	parser_error(g, p, msg);
 }

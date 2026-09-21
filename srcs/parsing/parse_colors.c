@@ -56,15 +56,15 @@ static char	**split_rgb_value(t_game *g, t_parser *p, char *value)
 
 	trimmed = ft_strtrim(value, " \t\r\n");
 	if (!trimmed)
-		parser_error(g, p, "sin memoria para color");
+		parser_error(g, p, "out of memory for color");
 	parts = ft_split(trimmed, ',');
 	free(trimmed);
 	if (!parts)
-		parser_error(g, p, "sin memoria para color");
+		parser_error(g, p, "out of memory for color");
 	if (!parts[0] || !parts[1] || !parts[2] || parts[3])
 	{
 		free_all(parts);
-		parser_error(g, p, "color invalido, se esperaba R,G,B (0-255)");
+		parser_error(g, p, "invalid color, expected R,G,B (0-255)");
 	}
 	return (parts);
 }
@@ -92,7 +92,7 @@ static int	pack_rgb(t_game *g, t_parser *p, char *value)
 		if (rgb[i] < 0)
 		{
 			free_all(parts);
-			parser_error(g, p, "componente de color invalido (0-255)");
+			parser_error(g, p, "invalid color component (0-255)");
 		}
 		i++;
 	}
@@ -123,7 +123,7 @@ void	handle_color_header(t_game *g, t_parser *p, char *line, char kind)
 		dest = &p->color_c;
 	}
 	if (*found)
-		parser_error(g, p, "cabecera de color duplicada");
+		parser_error(g, p, "duplicate color header");
 	*dest = pack_rgb(g, p, line + 2);
 	*found = 1;
 }

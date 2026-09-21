@@ -17,7 +17,7 @@ t_parser	*create_parser(t_game *g, const char *path)
 	if (!p)
 	{
 		close(fd);
-		error_exit(g, "sin memoria para el parser");
+		error_exit(g, "out of memory for the parser");
 	}
 	p->fd = fd;
 	return (p);

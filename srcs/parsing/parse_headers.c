@@ -1,12 +1,5 @@
 #include "../../includes/parser_internal.h"
 
-typedef struct s_slot
-{
-	char	*prefix;
-	int		*found;
-	char	**dest;
-}	t_slot;
-
 /*
  * Comprueba si una línea empieza exactamente por el prefijo dado.
  * Retorna: 1 si coincide, 0 si no.
@@ -39,10 +32,10 @@ static void	store_texture_path(t_game *g, t_parser *p, t_slot slot,
 		char *value)
 {
 	if (*slot.found)
-		parser_error(g, p, "cabecera de textura duplicada");
+		parser_error(g, p, "duplicate texture header");
 	*slot.dest = ft_strtrim(value, " \t\r\n");
 	if (!*slot.dest || !*(*slot.dest))
-		parser_error(g, p, "ruta de textura vacia o invalida");
+		parser_error(g, p, "empty or invalid texture path");
 	*slot.found = 1;
 }
 

@@ -40,7 +40,7 @@ int	parse_scene(t_game *g, const char *path)
 		line = get_next_line(p->fd);
 	}
 	if (!all_headers_found(p))
-		parser_error(g, p, "faltan cabeceras (NO/SO/WE/EA/F/C)");
+		parser_error(g, p, "missing headers (NO/SO/WE/EA/F/C)");
 	locate_map_block(g, p);
 	validate_map_chars(g, p);
 	free_parser(p);

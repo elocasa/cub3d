@@ -33,7 +33,7 @@ int	open_cub_file(t_game *g, const char *path)
 	int	fd;
 
 	if (!has_valid_extension(path))
-		error_exit(g, "el fichero debe tener extension .cub");
+		error_exit(g, "file must have a .cub extension");
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		error_exit(g, strerror(errno));

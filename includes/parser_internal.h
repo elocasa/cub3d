@@ -13,6 +13,20 @@ typedef struct s_headers_found
 	int	c;
 }	t_headers_found;
 
+typedef struct s_slot
+{
+	char	*prefix;
+	int		*found;
+	char	**dest;
+}	t_slot;
+
+typedef struct s_char_pos
+{
+	int		row;
+	int		col;
+	char	c;
+}	t_char_pos;
+
 typedef struct s_parser
 {
 	int				fd;

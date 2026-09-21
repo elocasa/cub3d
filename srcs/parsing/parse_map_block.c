@@ -45,7 +45,7 @@ static void	trim_edges(t_game *g, t_parser *p, int *start, int *end)
 		p->map_lines[(*end)--] = NULL;
 	}
 	if (*end < *start)
-		parser_error(g, p, "no se encontro el mapa");
+		parser_error(g, p, "map not found");
 }
 
 /*
@@ -63,7 +63,7 @@ static void	check_no_blank_inside(t_game *g, t_parser *p, int start, int end)
 	while (i <= end)
 	{
 		if (is_blank_entry(p->map_lines[i]))
-			parser_error(g, p, "linea en blanco dentro del mapa");
+			parser_error(g, p, "blank line inside the map");
 		i++;
 	}
 }

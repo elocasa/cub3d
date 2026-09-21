@@ -18,7 +18,7 @@ static void	grow_map_lines(t_game *g, t_parser *p)
 		new_cap = 8;
 	bigger = (char **)malloc(sizeof(char *) * new_cap);
 	if (!bigger)
-		parser_error(g, p, "sin memoria para el mapa");
+		parser_error(g, p, "out of memory for the map");
 	i = 0;
 	while (i < p->map_count)
 	{
