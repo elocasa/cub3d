@@ -4,6 +4,10 @@ CC		= cc
 CFLAGS		= -Wall -Wextra -Werror
 LDFLAGS		= -Lsrcs/libft -lft -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
+GREEN		= \033[0;32m
+RED		= \033[0;31m
+RESET		= \033[0m
+
 LIBFT_DIR	= srcs/libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 MLX_DIR		= minilibx-linux
@@ -36,29 +40,56 @@ OBJS		= $(SRCS:.c=.o)
 all: $(NAME)
 
 $(LIBFT):
-	@$(MAKE) -C $(LIBFT_DIR)
+	@if OUT=$$($(MAKE) -s --no-print-directory -C $(LIBFT_DIR) 2>&1); then \
+		printf "$(GREEN)Compilado: libft$(RESET)\n"; \
+	else \
+		printf "$(RED)Error al compilar: libft$(RESET)\n"; \
+		printf "%s\n" "$$OUT"; \
+		exit 1; \
+	fi
 
 $(MLX):
 	@if [ ! -f $(MLX_DIR)/Makefile.gen ]; then \
 		echo "INC=/usr/include" > $(MLX_DIR)/Makefile.gen; \
 		grep -v '%%%%' $(MLX_DIR)/Makefile.mk >> $(MLX_DIR)/Makefile.gen; \
 	fi
-	@$(MAKE) -C $(MLX_DIR) -f Makefile.gen all CC=gcc CFLAGS="$(MLX_CFLAGS)"
+	@if OUT=$$($(MAKE) -s --no-print-directory -C $(MLX_DIR) -f Makefile.gen all \
+		CC=gcc CFLAGS="$(MLX_CFLAGS)" 2>&1); then \
+		printf "$(GREEN)Compilado: minilibx$(RESET)\n"; \
+	else \
+		printf "$(RED)Error al compilar: minilibx$(RESET)\n"; \
+		printf "%s\n" "$$OUT"; \
+		exit 1; \
+	fi
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
+	@if OUT=$$($(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS) 2>&1); then \
+		printf "$(GREEN)Compilado: $(NAME)$(RESET)\n"; \
+	else \
+		printf "$(RED)Error al compilar: $(NAME)$(RESET)\n"; \
+		printf "%s\n" "$$OUT"; \
+		exit 1; \
+	fi
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@if OUT=$$($(CC) $(CFLAGS) -c $< -o $@ 2>&1); then \
+		printf "$(GREEN)Compilado: $<$(RESET)\n"; \
+	else \
+		printf "$(RED)Error al compilar: $<$(RESET)\n"; \
+		printf "%s\n" "$$OUT"; \
+		exit 1; \
+	fi
 
 clean:
 	@rm -f $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@if [ -f $(MLX_DIR)/Makefile.gen ]; then $(MAKE) -C $(MLX_DIR) -f Makefile.gen clean; fi
+	@$(MAKE) -s --no-print-directory -C $(LIBFT_DIR) clean
+	@if [ -f $(MLX_DIR)/Makefile.gen ]; then \
+		$(MAKE) -s --no-print-directory -C $(MLX_DIR) -f Makefile.gen clean; \
+	fi
 
 fclean: clean
 	@rm -f $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
+	@$(MAKE) -s --no-print-directory -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
