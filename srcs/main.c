@@ -1,5 +1,14 @@
 #include "../includes/cub3d.h"
 
+/*
+ * Punto de entrada: reserva el juego, carga la escena, arranca mlx
+ * y engancha los hooks de eventos antes de entrar en el bucle.
+ * Retorna: 0 si el programa termina con éxito.
+ *
+ * Entry point: allocates the game, loads the scene, starts mlx and
+ * wires the event hooks before entering the loop.
+ * Returns: 0 if the program finishes successfully.
+ */
 int	main(void)
 {
 	t_game	*g;
@@ -7,15 +16,15 @@ int	main(void)
 	g = init_game();
 	if (!g)
 	{
-		ft_putstr_fd("Error\nNo se pudo reservar memoria\n", 2);
+		ft_putstr_fd("Error\nCould not allocate memory\n", 2);
 		return (1);
 	}
 	if (stub_load_scene(g) < 0)
-		error_exit(g, "No se pudo cargar la escena de prueba");
+		error_exit(g, "Could not load the test scene");
 	if (init_mlx(g) < 0)
-		error_exit(g, "No se pudo iniciar MiniLibX");
+		error_exit(g, "Could not initialize MiniLibX");
 	if (load_all_textures(g) < 0)
-		error_exit(g, "No se pudo cargar una textura");
+		error_exit(g, "Could not load a texture");
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wcast-function-type"
 	mlx_hook(g->win_ptr, EV_KEYPRESS, 1L << 0, (int (*)())on_key_press, g);

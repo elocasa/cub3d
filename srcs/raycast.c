@@ -1,5 +1,14 @@
 #include "../includes/cub3d.h"
 
+/*
+ * Calcula la dirección del rayo para la columna x y las distancias
+ * delta según el plano de cámara del jugador.
+ * Retorna: nada.
+ *
+ * Computes the ray direction for column x and the delta distances
+ * from the player's camera plane.
+ * Returns: nothing.
+ */
 static void	init_ray(t_game *g, int x)
 {
 	t_raycast	*r;
@@ -21,6 +30,15 @@ static void	init_ray(t_game *g, int x)
 	r->hit = 0;
 }
 
+/*
+ * Calcula el paso (step) y la distancia lateral inicial en cada eje
+ * según el signo de la dirección del rayo.
+ * Retorna: nada.
+ *
+ * Computes the step and the initial side distance on each axis based
+ * on the ray direction's sign.
+ * Returns: nothing.
+ */
 static void	init_step(t_game *g)
 {
 	t_raycast	*r;
@@ -48,7 +66,15 @@ static void	init_step(t_game *g)
 	}
 }
 
-/* DDA: avanza por la rejilla hasta chocar con '1'. Con guarda de bordes. */
+/*
+ * Avanza por la rejilla del mapa (DDA) hasta chocar con una pared
+ * ('1') o salirse de los límites del mapa.
+ * Retorna: nada.
+ *
+ * Steps through the map grid (DDA) until it hits a wall ('1') or
+ * goes outside the map bounds.
+ * Returns: nothing.
+ */
 static void	perform_dda(t_game *g)
 {
 	t_raycast	*r;
@@ -86,6 +112,15 @@ static void	perform_dda(t_game *g)
 		r->perp_wall_dist = 0.0001;
 }
 
+/*
+ * Lanza el rayo completo de la columna x: dirección, DDA, altura de
+ * pared en pantalla y coordenada de textura.
+ * Retorna: nada.
+ *
+ * Casts the full ray for column x: direction, DDA, on-screen wall
+ * height and texture coordinate.
+ * Returns: nothing.
+ */
 void	cast_ray(t_game *g, int x)
 {
 	init_ray(g, x);
@@ -95,6 +130,15 @@ void	cast_ray(t_game *g, int x)
 	compute_tex_x(g);
 }
 
+/*
+ * Calcula el alto de la pared en pantalla y sus límites de dibujo,
+ * recortados a la ventana.
+ * Retorna: nada.
+ *
+ * Computes the on-screen wall height and its draw bounds, clamped to
+ * the window.
+ * Returns: nothing.
+ */
 void	compute_wall_bounds(t_game *g)
 {
 	t_raycast	*r;
@@ -109,7 +153,15 @@ void	compute_wall_bounds(t_game *g)
 		r->draw_end = WIN_H - 1;
 }
 
-/* wall_x = punto exacto de impacto en [0,1); tex_x con corrección espejo. */
+/*
+ * Calcula el punto exacto de impacto en la pared (wall_x, en [0,1))
+ * y la columna de textura correspondiente, con corrección de espejo.
+ * Retorna: nada.
+ *
+ * Computes the exact wall hit point (wall_x, in [0,1)) and the
+ * matching texture column, with mirror correction.
+ * Returns: nothing.
+ */
 void	compute_tex_x(t_game *g)
 {
 	t_raycast	*r;

@@ -11,6 +11,13 @@ static const char	*g_stub[] = {
 	NULL,
 };
 
+/*
+ * Copia el mapa de prueba fijo del stub a g->map.
+ * Retorna: 0 si se reservó y copió bien, -1 si falla.
+ *
+ * Copies the stub's fixed test map into g->map.
+ * Returns: 0 if it was allocated and copied fine, -1 if it fails.
+ */
 static int	stub_load_map(t_game *g)
 {
 	int	i;
@@ -31,6 +38,15 @@ static int	stub_load_map(t_game *g)
 	return (0);
 }
 
+/*
+ * Rellena una escena de prueba completa (mapa, jugador, rutas de
+ * textura y colores) sustituyendo al parser hasta que exista.
+ * Retorna: 0 si se cargó bien, -1 si falla.
+ *
+ * Fills in a complete test scene (map, player, texture paths and
+ * colors), standing in for the parser until it exists.
+ * Returns: 0 if it loaded fine, -1 if it fails.
+ */
 int	stub_load_scene(t_game *g)
 {
 	if (stub_load_map(g) < 0)
