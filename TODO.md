@@ -16,7 +16,7 @@
 - [x] Localizar el bloque del mapa tras las cabeceras y líneas vacías
 - [x] Validar caracteres permitidos: `0`, `1`, espacios y posición inicial
 - [x] Detectar exactamente una posición de jugador (`N`, `S`, `E`, `W`)
-- [ ] Verificar que el mapa esté cerrado por paredes
+- [x] Verificar que el mapa esté cerrado por paredes
 - [ ] Rellenar el mapa a ancho uniforme para evitar accesos fuera de rango
 
 ### 3) Motor raycasting
