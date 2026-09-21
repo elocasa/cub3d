@@ -1,17 +1,45 @@
 #include "../../includes/parsing.h"
+#include "parser_internal.h"
 
 /*
- * Punto de entrada del parser: abre el fichero .cub.
- * Retorna: 0 si el fichero se pudo abrir correctamente.
+ * Comprueba que las cuatro cabeceras de textura se hayan encontrado.
+ * Retorna: 1 si NO, SO, WE y EA aparecieron, 0 si falta alguna.
  *
- * Parser entry point: opens the .cub file.
- * Returns: 0 if the file was opened successfully.
+ * Checks that all four texture headers have been found.
+ * Returns: 1 if NO, SO, WE and EA all appeared, 0 if any is missing.
+ */
+static int	all_textures_found(t_parser *p)
+{
+	return (p->found.no && p->found.so && p->found.we && p->found.ea);
+}
+
+/*
+ * Punto de entrada del parser: lee el .cub y separa cabeceras de mapa.
+ * Retorna: 0 si las cabeceras de textura se leyeron correctamente.
+ *
+ * Parser entry point: reads the .cub file and splits headers from the map.
+ * Returns: 0 if the texture headers were read successfully.
  */
 int	parse_scene(t_game *g, const char *path)
 {
-	int	fd;
+	t_parser	*p;
+	char		*line;
 
-	fd = open_cub_file(g, path);
-	close(fd);
+	p = create_parser(g, path);
+	line = get_next_line(p->fd);
+	while (line)
+	{
+		p->line_no++;
+		p->current_line = line;
+		if (handle_header_line(g, p, line))
+			free(line);
+		else
+			store_map_line(g, p, line);
+		p->current_line = NULL;
+		line = get_next_line(p->fd);
+	}
+	if (!all_textures_found(p))
+		parser_error(g, p, "faltan cabeceras de textura (NO/SO/WE/EA)");
+	free_parser(p);
 	return (0);
 }

@@ -28,7 +28,10 @@ SRCS		= srcs/main.c \
 		  srcs/input.c \
 		  srcs/cleanup.c \
 		  srcs/parsing/parsing.c \
-		  srcs/parsing/parse_open.c
+		  srcs/parsing/parse_open.c \
+		  srcs/parsing/parser.c \
+		  srcs/parsing/parse_headers.c \
+		  srcs/parsing/parse_map.c
 
 OBJS		= $(SRCS:.c=.o)
 
