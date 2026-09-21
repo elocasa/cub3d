@@ -17,7 +17,7 @@
 - [x] Validar caracteres permitidos: `0`, `1`, espacios y posición inicial
 - [x] Detectar exactamente una posición de jugador (`N`, `S`, `E`, `W`)
 - [x] Verificar que el mapa esté cerrado por paredes
-- [ ] Rellenar el mapa a ancho uniforme para evitar accesos fuera de rango
+- [x] Rellenar el mapa a ancho uniforme para evitar accesos fuera de rango
 
 ### 3) Motor raycasting
 - [x] Inicializar posición del jugador en el centro de la celda de inicio
