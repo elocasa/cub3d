@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 /* Mapa de prueba cerrado (sustituye al parser hasta que exista).
    Jugador 'N' en (3.5, 2.5). */
