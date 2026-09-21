@@ -69,5 +69,6 @@ t_fill_ctx	init_fill_ctx(t_game *g, t_parser *p);
 void		free_fill_ctx(t_fill_ctx *ctx, int map_count);
 void		check_map_closed(t_game *g, t_parser *p);
 void		pad_map(t_game *g, t_parser *p);
+void		finalize_parser(t_game *g, t_parser *p);
 
 #endif

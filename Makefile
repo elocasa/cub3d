@@ -29,6 +29,7 @@ SRCS		= srcs/main.c \
 		  srcs/parsing/parse_closed_setup.c \
 		  srcs/parsing/parse_closed.c \
 		  srcs/parsing/parse_pad.c \
+		  srcs/parsing/parse_finalize.c \
 		  srcs/parsing/parse_colors.c
 
 OBJS		= $(SRCS:.c=.o)
