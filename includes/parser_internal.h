@@ -37,5 +37,6 @@ void		parser_error(t_game *g, t_parser *p, const char *msg);
 int			handle_header_line(t_game *g, t_parser *p, char *line);
 void		store_map_line(t_game *g, t_parser *p, char *line);
 void		handle_color_header(t_game *g, t_parser *p, char *line, char kind);
+void		locate_map_block(t_game *g, t_parser *p);
 
 #endif

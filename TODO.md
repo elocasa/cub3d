@@ -13,7 +13,7 @@
 - [x] Validar que no falte ninguna textura y que no haya duplicados
 - [x] Parsear colores `F` y `C` en formato `R,G,B`
 - [x] Comprobar que los valores RGB estén entre 0 y 255
-- [ ] Localizar el bloque del mapa tras las cabeceras y líneas vacías
+- [x] Localizar el bloque del mapa tras las cabeceras y líneas vacías
 - [ ] Validar caracteres permitidos: `0`, `1`, espacios y posición inicial
 - [ ] Detectar exactamente una posición de jugador (`N`, `S`, `E`, `W`)
 - [ ] Verificar que el mapa esté cerrado por paredes

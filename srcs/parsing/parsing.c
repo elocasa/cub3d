@@ -41,6 +41,7 @@ int	parse_scene(t_game *g, const char *path)
 	}
 	if (!all_headers_found(p))
 		parser_error(g, p, "faltan cabeceras (NO/SO/WE/EA/F/C)");
+	locate_map_block(g, p);
 	free_parser(p);
 	return (0);
 }
