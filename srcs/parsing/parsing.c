@@ -44,6 +44,7 @@ int	parse_scene(t_game *g, const char *path)
 	locate_map_block(g, p);
 	validate_map_chars(g, p);
 	detect_player_position(g, p);
+	check_map_closed(g, p);
 	free_parser(p);
 	return (0);
 }

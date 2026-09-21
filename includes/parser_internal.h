@@ -27,6 +27,13 @@ typedef struct s_char_pos
 	char	c;
 }	t_char_pos;
 
+typedef struct s_fill_ctx
+{
+	char		**visited;
+	t_char_pos	*stack;
+	int			top;
+}	t_fill_ctx;
+
 typedef struct s_parser
 {
 	int				fd;
@@ -57,5 +64,8 @@ void		handle_color_header(t_game *g, t_parser *p, char *line, char kind);
 void		locate_map_block(t_game *g, t_parser *p);
 void		validate_map_chars(t_game *g, t_parser *p);
 void		detect_player_position(t_game *g, t_parser *p);
+t_fill_ctx	init_fill_ctx(t_game *g, t_parser *p);
+void		free_fill_ctx(t_fill_ctx *ctx, int map_count);
+void		check_map_closed(t_game *g, t_parser *p);
 
 #endif

@@ -26,6 +26,8 @@ SRCS		= srcs/main.c \
 		  srcs/parsing/parse_map_block.c \
 		  srcs/parsing/parse_map_chars.c \
 		  srcs/parsing/parse_player.c \
+		  srcs/parsing/parse_closed_setup.c \
+		  srcs/parsing/parse_closed.c \
 		  srcs/parsing/parse_colors.c
 
 OBJS		= $(SRCS:.c=.o)
