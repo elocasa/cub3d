@@ -38,6 +38,25 @@ static void	destroy_tex(t_game *g, t_img *t)
 }
 
 /*
+ * Libera las cuatro rutas de textura si están reservadas.
+ * Retorna: nada.
+ *
+ * Frees the four texture paths if they were allocated.
+ * Returns: nothing.
+ */
+static void	free_texture_paths(t_game *g)
+{
+	if (g->textures.path_no)
+		free(g->textures.path_no);
+	if (g->textures.path_so)
+		free(g->textures.path_so);
+	if (g->textures.path_we)
+		free(g->textures.path_we);
+	if (g->textures.path_ea)
+		free(g->textures.path_ea);
+}
+
+/*
  * Imprime el error dado, libera todo a través de close_game y
  * termina el programa.
  * Retorna: no retorna, el programa termina.
@@ -79,6 +98,7 @@ int	close_game(void *param)
 	destroy_tex(g, &g->textures.so);
 	destroy_tex(g, &g->textures.we);
 	destroy_tex(g, &g->textures.ea);
+	free_texture_paths(g);
 	if (g->img.img)
 		mlx_destroy_image(g->mlx_ptr, g->img.img);
 	if (g->win_ptr)
