@@ -43,6 +43,7 @@ int	parse_scene(t_game *g, const char *path)
 		parser_error(g, p, "missing headers (NO/SO/WE/EA/F/C)");
 	locate_map_block(g, p);
 	validate_map_chars(g, p);
+	detect_player_position(g, p);
 	free_parser(p);
 	return (0);
 }
