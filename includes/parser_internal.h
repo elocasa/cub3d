@@ -52,6 +52,7 @@ typedef struct s_parser
 	int				player_row;
 	int				player_col;
 	char			player_orient;
+	int				map_width;
 }	t_parser;
 
 int			open_cub_file(t_game *g, const char *path);
@@ -67,5 +68,6 @@ void		detect_player_position(t_game *g, t_parser *p);
 t_fill_ctx	init_fill_ctx(t_game *g, t_parser *p);
 void		free_fill_ctx(t_fill_ctx *ctx, int map_count);
 void		check_map_closed(t_game *g, t_parser *p);
+void		pad_map(t_game *g, t_parser *p);
 
 #endif
