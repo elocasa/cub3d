@@ -24,24 +24,18 @@ t_parser	*create_parser(t_game *g, const char *path)
 }
 
 /*
- * Consume las líneas que queden por leer para vaciar el buffer de
- * get_next_line antes de cerrar el fichero.
+ * Cierra el fichero y fuerza a get_next_line a liberar su buffer
+ * estático llamándolo una vez más sobre el fd ya cerrado.
  * Retorna: nada.
  *
- * Reads any remaining lines to flush get_next_line's internal buffer
- * before closing the file.
+ * Closes the file and forces get_next_line to free its static buffer
+ * by calling it once more on the now-closed fd.
  * Returns: nothing.
  */
 static void	drain_fd(int fd)
 {
-	char	*line;
-
-	line = get_next_line(fd);
-	while (line)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
+	close(fd);
+	get_next_line(fd);
 }
 
 /*
@@ -58,10 +52,7 @@ void	free_parser(t_parser *p)
 	if (!p)
 		return ;
 	if (p->fd >= 0)
-	{
 		drain_fd(p->fd);
-		close(p->fd);
-	}
 	free(p->current_line);
 	free(p->path_no);
 	free(p->path_so);
