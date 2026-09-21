@@ -8,16 +8,16 @@
 - [ ] Añadir ejemplos de uso con mapas válidos e inválidos
 
 ### 2) Parsing del mapa/config
-- [ ] Abrir el fichero `.cub` y rechazar errores de acceso/lectura
-- [ ] Leer cabeceras `NO`, `SO`, `WE`, `EA` y guardar rutas de textura
-- [ ] Validar que no falte ninguna textura y que no haya duplicados
-- [ ] Parsear colores `F` y `C` en formato `R,G,B`
-- [ ] Comprobar que los valores RGB estén entre 0 y 255
-- [ ] Localizar el bloque del mapa tras las cabeceras y líneas vacías
-- [ ] Validar caracteres permitidos: `0`, `1`, espacios y posición inicial
-- [ ] Detectar exactamente una posición de jugador (`N`, `S`, `E`, `W`)
-- [ ] Verificar que el mapa esté cerrado por paredes
-- [ ] Rellenar el mapa a ancho uniforme para evitar accesos fuera de rango
+- [x] Abrir el fichero `.cub` y rechazar errores de acceso/lectura
+- [x] Leer cabeceras `NO`, `SO`, `WE`, `EA` y guardar rutas de textura
+- [x] Validar que no falte ninguna textura y que no haya duplicados
+- [x] Parsear colores `F` y `C` en formato `R,G,B`
+- [x] Comprobar que los valores RGB estén entre 0 y 255
+- [x] Localizar el bloque del mapa tras las cabeceras y líneas vacías
+- [x] Validar caracteres permitidos: `0`, `1`, espacios y posición inicial
+- [x] Detectar exactamente una posición de jugador (`N`, `S`, `E`, `W`)
+- [x] Verificar que el mapa esté cerrado por paredes
+- [x] Rellenar el mapa a ancho uniforme para evitar accesos fuera de rango
 
 ### 3) Motor raycasting
 - [x] Inicializar posición del jugador en el centro de la celda de inicio

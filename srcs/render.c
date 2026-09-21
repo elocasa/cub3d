@@ -1,5 +1,14 @@
 #include "../includes/cub3d.h"
 
+/*
+ * Escribe un color en el buffer de la imagen, ignorando coordenadas
+ * fuera de la ventana.
+ * Retorna: nada.
+ *
+ * Writes a color into the image buffer, ignoring coordinates outside
+ * the window.
+ * Returns: nothing.
+ */
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	char	*dst;
@@ -10,7 +19,15 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = (unsigned int)color;
 }
 
-/* Sombreado barato: oscurece caras laterales (side==1). */
+/*
+ * Oscurece un color a la mitad para las caras laterales (side==1),
+ * como sombreado barato.
+ * Retorna: el color original si side==0, o la versión oscurecida.
+ *
+ * Darkens a color by half for the side faces (side==1), as a cheap
+ * shading trick.
+ * Returns: the original color if side==0, or the darkened version.
+ */
 static int	shade(int color, int side)
 {
 	int	r;
@@ -25,6 +42,15 @@ static int	shade(int color, int side)
 	return ((r << 16) | (gg << 8) | b);
 }
 
+/*
+ * Dibuja la columna de pared de la pantalla x, muestreando la
+ * textura según la altura calculada, y actualiza el zbuffer.
+ * Retorna: nada.
+ *
+ * Draws the wall column for screen x, sampling the texture according
+ * to the computed height, and updates the zbuffer.
+ * Returns: nothing.
+ */
 static void	draw_column(t_game *g, int x)
 {
 	t_raycast	*r;
@@ -53,6 +79,15 @@ static void	draw_column(t_game *g, int x)
 	g->zbuffer[x] = r->perp_wall_dist;
 }
 
+/*
+ * Pinta el techo con el color de C en la mitad superior y el suelo
+ * con el color de F en la mitad inferior.
+ * Retorna: nada.
+ *
+ * Paints the ceiling with C's color in the top half and the floor
+ * with F's color in the bottom half.
+ * Returns: nothing.
+ */
 static void	draw_background(t_game *g)
 {
 	int	x;
@@ -81,6 +116,15 @@ static void	draw_background(t_game *g)
 	}
 }
 
+/*
+ * Renderiza un frame completo: fondo, todas las columnas de pared,
+ * y vuelca la imagen a la ventana.
+ * Retorna: nada.
+ *
+ * Renders one full frame: background, every wall column, and blits
+ * the image onto the window.
+ * Returns: nothing.
+ */
 void	render_frame(t_game *g)
 {
 	int	x;

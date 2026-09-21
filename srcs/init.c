@@ -1,6 +1,14 @@
 #include "../includes/cub3d.h"
 
-/* Reserva el t_game a cero. El mapa/texturas los rellena stub_load_scene. */
+/*
+ * Reserva el t_game a cero; el mapa y las texturas los rellena
+ * stub_load_scene más adelante.
+ * Retorna: puntero al juego reservado, o NULL si falla.
+ *
+ * Allocates t_game zeroed out; the map and textures are filled in
+ * later by stub_load_scene.
+ * Returns: pointer to the allocated game, or NULL on failure.
+ */
 t_game	*init_game(void)
 {
 	t_game	*g;
@@ -9,7 +17,15 @@ t_game	*init_game(void)
 	return (g);
 }
 
-/* Orientación inicial -> vector dirección + plano de cámara (FOV ~66°). */
+/*
+ * Calcula el vector dirección y el plano de cámara del jugador a
+ * partir de su orientación inicial (FOV ~66°).
+ * Retorna: nada.
+ *
+ * Computes the player's direction vector and camera plane from their
+ * starting orientation (~66° FOV).
+ * Returns: nothing.
+ */
 void	init_player_dir(t_game *g, char orient)
 {
 	if (orient == 'N')
@@ -42,7 +58,16 @@ void	init_player_dir(t_game *g, char orient)
 	}
 }
 
-/* Crea conexión mlx, ventana e imagen frame reutilizable. */
+/*
+ * Crea la conexión con mlx, la ventana y la imagen de frame
+ * reutilizable, y reserva el zbuffer.
+ * Retorna: 0 si todo se creó correctamente, -1 si algo falla.
+ *
+ * Creates the mlx connection, the window and the reusable frame
+ * image, and allocates the zbuffer.
+ * Returns: 0 if everything was created successfully, -1 if something
+ * fails.
+ */
 int	init_mlx(t_game *g)
 {
 	g->mlx_ptr = mlx_init();
