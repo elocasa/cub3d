@@ -15,8 +15,8 @@
 
 /* VELOCIDADES (puedes cambiarlas aquí): movimiento en casillas por
    frame (WASD) y rotación en radianes por frame (flechas). */
-# define MOVE_SPEED 0.015
-# define ROT_SPEED 0.01
+# define MOVE_SPEED 0.1
+# define ROT_SPEED 0.1
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -68,6 +68,9 @@ void	render_frame(t_game *g);
 /* input.c */
 int		on_key_press(int key, void *param);
 int		on_key_release(int key, void *param);
+int	is_walkable(t_game *g, double x, double y);
+void	try_move(t_game *g, double dx, double dy);
+void	rotate_player(t_game *g, double angle);
 int		game_loop(void *param);
 
 /* cleanup.c */

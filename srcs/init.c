@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcerezo- <dcerezo-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/22 13:32:36 by dcerezo-          #+#    #+#             */
+/*   Updated: 2026/09/22 14:05:46 by dcerezo-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 /*
@@ -17,6 +29,14 @@ t_game	*init_game(void)
 	return (g);
 }
 
+void	set_player_dir(t_game *g, t_vec2 dir, t_vec2 plane)
+{
+	g->player.dir_x = dir.x;
+	g->player.dir_y = dir.y;
+	g->player.plane_x = plane.x;
+	g->player.plane_y = plane.y;
+}
+
 /*
  * Calcula el vector dirección y el plano de cámara del jugador a
  * partir de su orientación inicial (FOV ~66°).
@@ -30,31 +50,19 @@ void	init_player_dir(t_game *g, char orient)
 {
 	if (orient == 'N')
 	{
-		g->player.dir_x = 0;
-		g->player.dir_y = -1;
-		g->player.plane_x = 0.66;
-		g->player.plane_y = 0;
+		set_player_dir(g, (t_vec2){0, -1}, (t_vec2){0.66, 0});
 	}
 	else if (orient == 'S')
 	{
-		g->player.dir_x = 0;
-		g->player.dir_y = 1;
-		g->player.plane_x = -0.66;
-		g->player.plane_y = 0;
+		set_player_dir(g, (t_vec2){0, 1}, (t_vec2){-0.66, 0});
 	}
 	else if (orient == 'E')
 	{
-		g->player.dir_x = 1;
-		g->player.dir_y = 0;
-		g->player.plane_x = 0;
-		g->player.plane_y = 0.66;
+		set_player_dir(g, (t_vec2){1, 0}, (t_vec2){0, 0.66});
 	}
 	else
 	{
-		g->player.dir_x = -1;
-		g->player.dir_y = 0;
-		g->player.plane_x = 0;
-		g->player.plane_y = -0.66;
+		set_player_dir(g, (t_vec2){-1, 0}, (t_vec2){0, -0.66});
 	}
 }
 
@@ -79,8 +87,8 @@ int	init_mlx(t_game *g)
 	g->img.img = mlx_new_image(g->mlx_ptr, WIN_W, WIN_H);
 	if (!g->img.img)
 		return (-1);
-	g->img.addr = mlx_get_data_addr(g->img.img, &g->img.bpp,
-			&g->img.line_len, &g->img.endian);
+	g->img.addr = mlx_get_data_addr(g->img.img, &g->img.bpp, &g->img.line_len,
+			&g->img.endian);
 	if (!g->img.addr)
 		return (-1);
 	g->img.width = WIN_W;

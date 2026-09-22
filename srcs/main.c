@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcerezo- <dcerezo-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/09/22 14:10:23 by dcerezo-          #+#    #+#             */
+/*   Updated: 2026/09/22 14:10:24 by dcerezo-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 /*
@@ -30,13 +42,10 @@ int	main(int argc, char **argv)
 		error_exit(g, "Could not initialize MiniLibX");
 	if (load_all_textures(g) < 0)
 		error_exit(g, "Could not load a texture");
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wcast-function-type"
 	mlx_hook(g->win_ptr, EV_KEYPRESS, 1L << 0, (int (*)())on_key_press, g);
 	mlx_hook(g->win_ptr, EV_KEYRELEASE, 1L << 1, (int (*)())on_key_release, g);
 	mlx_hook(g->win_ptr, EV_DESTROY, 0, (int (*)())close_game, g);
 	mlx_loop_hook(g->mlx_ptr, (int (*)())game_loop, g);
-#pragma GCC diagnostic pop
 	mlx_loop(g->mlx_ptr);
 	return (0);
 }
