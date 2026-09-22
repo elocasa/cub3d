@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: diego <diego@student.42.fr>                #+#  +:+       +#+        */
+/*   By: morcas <morcas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026-09-22 14:40:24 by diego             #+#    #+#             */
-/*   Updated: 2026-09-22 14:40:24 by diego            ###   ########.fr       */
+/*   Created: 2026/09/22 14:40:24 by diego             #+#    #+#             */
+/*   Updated: 2026/09/22 17:02:45 by morcas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../srcs/libft/libft.h"
 # include "types.h"
+# include "parsing.h"
 
 # define WIN_W 1280
 # define WIN_H 720
@@ -54,9 +55,6 @@ typedef struct s_game
 	t_raycast	raycast;
 	t_keys		keys;
 }	t_game;
-
-/* parsing/ (Marcos): construye la escena a partir del fichero .cub. */
-# include "parsing.h"
 
 /* init.c */
 t_game	*init_game(void);
