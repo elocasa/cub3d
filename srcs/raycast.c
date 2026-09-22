@@ -79,52 +79,6 @@ static void	init_step(t_game *g)
 }
 
 /*
- * Avanza por la rejilla del mapa (DDA) hasta chocar con una pared
- * ('1') o salirse de los límites del mapa.
- * Retorna: nada.
- *
- * Steps through the map grid (DDA) until it hits a wall ('1') or
- * goes outside the map bounds.
- * Returns: nothing.
- */
-static void	perform_dda(t_game *g)
-{
-	t_raycast	*r;
-
-	r = &g->raycast;
-	while (r->hit == 0)
-	{
-		if (r->side_dist_x < r->side_dist_y)
-		{
-			r->side_dist_x += r->delta_dist_x;
-			r->map_x += r->step_x;
-			r->side = 0;
-		}
-		else
-		{
-			r->side_dist_y += r->delta_dist_y;
-			r->map_y += r->step_y;
-			r->side = 1;
-		}
-		if (r->map_x < 0 || r->map_y < 0
-			|| r->map_x >= g->map.width || r->map_y >= g->map.height)
-		{
-			r->hit = 1;
-			r->perp_wall_dist = 1e30;
-			return ;
-		}
-		if (g->map.grid[r->map_y][r->map_x] == '1')
-			r->hit = 1;
-	}
-	if (r->side == 0)
-		r->perp_wall_dist = r->side_dist_x - r->delta_dist_x;
-	else
-		r->perp_wall_dist = r->side_dist_y - r->delta_dist_y;
-	if (r->perp_wall_dist < 0.0001)
-		r->perp_wall_dist = 0.0001;
-}
-
-/*
  * Lanza el rayo completo de la columna x: dirección, DDA, altura de
  * pared en pantalla y coordenada de textura.
  * Retorna: nada.

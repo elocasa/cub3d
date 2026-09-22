@@ -5,7 +5,7 @@ CFLAGS		= -Wall -Wextra -Werror
 LDFLAGS		= -Lsrcs/libft -lft -Lminilibx-linux -lmlx -lXext -lX11 -lm
 
 GREEN		= \033[0;32m
-RED		= \033[0;31m
+RED			= \033[0;31m
 RESET		= \033[0m
 
 LIBFT_DIR	= srcs/libft
@@ -18,6 +18,7 @@ SRCS		= srcs/main.c \
 		  srcs/init.c \
 		  srcs/textures.c \
 		  srcs/raycast.c \
+		  srcs/dda.c \
 		  srcs/render.c \
 		  srcs/input.c \
 		  srcs/player_move.c \
@@ -36,9 +37,17 @@ SRCS		= srcs/main.c \
 		  srcs/parsing/parse_finalize.c \
 		  srcs/parsing/parse_colors.c
 
-OBJS		= $(SRCS:.c=.o)
+OBJS_DIR	= obj
+OBJS		= $(SRCS:%.c=$(OBJS_DIR)/%.o)
 
 all: $(NAME)
+
+$(OBJS_DIR):
+	@mkdir -p $(OBJS_DIR)
+
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 	@if OUT=$$($(MAKE) -s --no-print-directory -C $(LIBFT_DIR) 2>&1); then \
@@ -72,17 +81,8 @@ $(NAME): $(LIBFT) $(MLX) $(OBJS)
 		exit 1; \
 	fi
 
-%.o: %.c
-	@if OUT=$$($(CC) $(CFLAGS) -c $< -o $@ 2>&1); then \
-		printf "$(GREEN)Compilado: $<$(RESET)\n"; \
-	else \
-		printf "$(RED)Error al compilar: $<$(RESET)\n"; \
-		printf "%s\n" "$$OUT"; \
-		exit 1; \
-	fi
-
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJS_DIR)
 	@$(MAKE) -s --no-print-directory -C $(LIBFT_DIR) clean
 	@if [ -f $(MLX_DIR)/Makefile.gen ]; then \
 		$(MAKE) -s --no-print-directory -C $(MLX_DIR) -f Makefile.gen clean; \

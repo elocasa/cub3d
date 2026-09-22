@@ -42,7 +42,8 @@ int	is_walkable(t_game *g, double x, double y)
  * slide along a wall instead of blocking the movement.
  * Returns: nothing.
  */
- void	try_move(t_game *g, double dx, double dy)
+
+void	try_move(t_game *g, double dx, double dy)
 {
 	if (is_walkable(g, g->player.pos_x + dx, g->player.pos_y))
 		g->player.pos_x += dx;

@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_open.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diego <diego@student.42.fr>                #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026-09-22 14:29:05 by diego             #+#    #+#             */
+/*   Updated: 2026-09-22 14:29:05 by diego            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/parser_internal.h"
-#include <fcntl.h>
-#include <errno.h>
 
 /*
  * Comprueba que la ruta termine en la extensión ".cub".

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_headers.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: diego <diego@student.42.fr>                #+#  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026-09-22 14:28:33 by diego             #+#    #+#             */
+/*   Updated: 2026-09-22 14:28:33 by diego            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/parser_internal.h"
 
 /*
@@ -40,13 +52,13 @@ static void	store_texture_path(t_game *g, t_parser *p, t_slot slot,
 }
 
 /*
- * Identifica si una línea es una cabecera (NO/SO/WE/EA/F/C) y la procesa.
- * Retorna: 1 si la línea era una cabecera, 0 si no lo era.
+ * Comprueba si la línea es una cabecera de textura (NO/SO/WE/EA) y la guarda.
+ * Retorna: 1 si la línea era una textura, 0 si no lo era.
  *
- * Identifies whether a line is a header (NO/SO/WE/EA/F/C) and handles it.
- * Returns: 1 if the line was a header, 0 otherwise.
+ * Checks whether the line is a texture header (NO/SO/WE/EA) and stores it.
+ * Returns: 1 if the line was a texture, 0 otherwise.
  */
-int	handle_header_line(t_game *g, t_parser *p, char *line)
+static int	handle_texture_headers(t_game *g, t_parser *p, char *line)
 {
 	t_slot	slots[4];
 	int		i;
@@ -64,6 +76,20 @@ int	handle_header_line(t_game *g, t_parser *p, char *line)
 			return (1);
 		}
 	}
+	return (0);
+}
+
+/*
+ * Identifica si una línea es una cabecera (NO/SO/WE/EA/F/C) y la procesa.
+ * Retorna: 1 si la línea era una cabecera, 0 si no lo era.
+ *
+ * Identifies whether a line is a header (NO/SO/WE/EA/F/C) and handles it.
+ * Returns: 1 if the line was a header, 0 otherwise.
+ */
+int	handle_header_line(t_game *g, t_parser *p, char *line)
+{
+	if (handle_texture_headers(g, p, line))
+		return (1);
 	if (starts_with(line, "F "))
 	{
 		handle_color_header(g, p, line, 'f');
