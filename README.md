@@ -101,6 +101,6 @@ Classic references used to understand and implement ray-casting:
 
 ### AI usage
 
-AI assistance (Claude Code) was used punctually to help spot a bug during
+AI assistance was used punctually to help spot a bug during
 debugging (a header include-order issue that caused a compilation error).
 
